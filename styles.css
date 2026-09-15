@@ -1,0 +1,322 @@
+body {
+  font-family: 'Fredoka', cursive, sans-serif;
+  background-color: #f4eae1;
+  color: #5a4234;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.game-container {
+  max-width: 900px;
+  width: 100%;
+  position: relative;
+}
+
+.game-title {
+  text-align: center;
+  font-size: 36px;
+  color: #8c6d58;
+  margin-bottom: 20px;
+}
+
+.cozy-card {
+  background: #fff8f0;
+  border: 4px solid #d4b89b;
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 8px 0px #c2a383;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.section-label {
+  font-weight: bold;
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+/* ---------- Tarjetas de selección (modo y nivel) ---------- */
+.mode-selector, .level-selector {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.mode-card, .level-card {
+  background: #ebd8c3;
+  border: 3px solid #b89878;
+  border-radius: 12px;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: transform 0.1s, background 0.2s;
+}
+
+.mode-card.selected, .level-card.selected {
+  background: #a8c3a0;
+  border-color: #6b8e62;
+  color: white;
+  transform: scale(1.05);
+}
+
+.mode-card {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.level-card {
+  display: inline-flex;
+  align-items: center;
+}
+
+.stars {
+  display: inline-flex;
+  gap: 2px;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+/* ---------- Botones gráficos ---------- */
+.img-button, .audio-icon-btn, .send-icon-btn {
+  background: #e07a5f;
+  color: white;
+  border: 3px solid #b55238;
+  padding: 12px 25px;
+  border-radius: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  display: inline-block;
+  box-shadow: 0 5px 0px #9e3f28;
+  user-select: none;
+}
+
+.img-button:active, .audio-icon-btn:active, .send-icon-btn:active {
+  transform: translateY(4px);
+  box-shadow: 0 1px 0px #9e3f28;
+}
+
+.audio-icon-btn, .back-icon-btn, .send-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.back-icon-btn {
+  background: #a8c3a0;
+  color: white;
+  border: 3px solid #6b8e62;
+  padding: 8px 18px;
+  border-radius: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none;
+  box-shadow: 0 4px 0px #567a4d;
+  margin-bottom: 12px;
+  transition: transform 0.1s;
+}
+
+.back-icon-btn:hover {
+  transform: scale(1.05);
+}
+
+.back-icon-btn:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0px #567a4d;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ---------- Tarjeta explicativa del concepto de inglés ---------- */
+.concept-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: #fff8f0;
+  border: 3px solid #d4b89b;
+  border-radius: 15px;
+  padding: 12px 16px;
+  margin: 10px auto 16px auto;
+  max-width: 700px;
+  text-align: left;
+}
+
+.concept-icon {
+  color: #e07a5f;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.concept-text strong {
+  display: block;
+  color: #8c6d58;
+  margin-bottom: 4px;
+  font-size: 15px;
+}
+
+.concept-text p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #5a4234;
+}
+
+/* ---------- Escenario: estantería + habitación ---------- */
+.main-stage {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.cozy-shelf {
+  flex: 1;
+  background: #d1b390;
+  border: 4px solid #9c7b57;
+  border-radius: 15px;
+  padding: 15px;
+}
+
+.furniture-item {
+  background: #fff8f0;
+  border: 2px solid #d4b89b;
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 12px;
+  text-align: center;
+  box-shadow: 0 4px 0px #d4b89b;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+
+.furniture-item:hover {
+  transform: scale(1.03);
+}
+
+/* La habitación: SIN display:flex, para que los muebles se posicionen
+   libremente con left/bottom en vez de alinearse en fila. */
+.cozy-room {
+  flex: 2.5;
+  height: 350px;
+  background: linear-gradient(to bottom, #fceade 65%, #d4a373 65%);
+  border: 4px solid #8c6d58;
+  border-radius: 15px;
+  position: relative;   /* ancla para posicionar los muebles adentro */
+  overflow: hidden;
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.08);
+}
+
+.room-item {
+  filter: drop-shadow(0 4px 3px rgba(0,0,0,0.25));
+  animation: popIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* El popIn conserva el translateX(-50%) del centrado horizontal,
+   si no el mueble "salta" de lugar al terminar la animación. */
+@keyframes popIn {
+  0%   { transform: translateX(-50%) scale(0); }
+  100% { transform: translateX(-50%) scale(1); }
+}
+
+/* ---------- Mensajes de estado y feedback ---------- */
+.status-badge, .feedback-badge {
+  background: #f4a261;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 20px;
+  display: inline-block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.controls-card {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+#writing-controls {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  justify-content: center;
+}
+
+#user-input {
+  width: 65%;
+  padding: 12px;
+  border: 3px solid #d4b89b;
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 16px;
+  outline: none;
+}
+
+/* ---------- Pantalla de nivel completado / felicitaciones ---------- */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(90, 66, 52, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  border-radius: 20px;
+}
+
+.overlay-card {
+  background: #fff8f0;
+  border: 4px solid #d4b89b;
+  border-radius: 20px;
+  padding: 32px 36px;
+  text-align: center;
+  max-width: 360px;
+  box-shadow: 0 12px 0px #c2a383;
+  position: relative;
+  animation: overlayPop 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes overlayPop {
+  0%   { transform: scale(0.7); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.overlay-star-deco {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 6px;
+  color: #f4a261;
+  margin-bottom: 8px;
+}
+
+.overlay-trophy {
+  color: #e07a5f;
+  margin-bottom: 10px;
+}
+
+.overlay-card h2 {
+  margin: 0 0 8px 0;
+  color: #8c6d58;
+  font-size: 24px;
+}
+
+.overlay-card p {
+  margin: 0 0 20px 0;
+  color: #5a4234;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.overlay-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 0;
+}
